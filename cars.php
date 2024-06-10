@@ -9,6 +9,7 @@
 			body
 			{
 				font-family:'Poppins',sans-serif;
+				overflow-x: hidden;
 			}
 			.up
 			{
@@ -360,17 +361,16 @@
 		<header>
 		
 			<div class="up" id="up">
-				<div class="logo"><img  src="images/wheelzonrent-logo.png" height="100%" width="10%%" style="float:left;margin:-1.2% 0 0 6.5%;">
-				<img height="25%" width="1.6%" src="images/phone.png" style="height:auto;"><font style="font-size:1.254vw;">&ensp;+91-7305010188&emsp;</font>
+				<div class="logo"><img  src="images/wheelzonrent-logo.png" height="122%" width="10%%" style="float:left;margin:-1.2% 0 0 6.5%;">
+				<img height="25%" width="1.6%" src="images/phone.png" style="height:auto;"><font style="font-size:1.254vw;">&ensp;+0123456789&emsp;</font>
 				<img height="21%" width="1.9%" src="images/message.png" style="height:auto;"><font style="font-size:1.254vw;">&ensp;tdtu@gmail.com</font></div>
 				<div class="logo1"><center><img  src="images/wheelzonrent-logo.png" height="50%" width="30%"></center>
-					<div class="call"><img height="25%" width="2.5%" src="images/phone.png" style="height:auto;"><font>+91-7305010188&emsp;</font></div>
+					<div class="call"><img height="25%" width="2.5%" src="images/phone.png" style="height:auto;"><font>+0123456789&emsp;</font></div>
 					<div class="mail"><img height="21%" width="2.5%" src="images/message.png" style="height:auto;"><font>&ensp;tdtu@gmail.com</font></div></div>
 				<nav>
 					<ul>
 						<li><a class="navi" href="index.php">Home</a></li>
 						<li><a class="active" href="cars.php">Cars</a></li>
-						<li><a class="navi" href="bikes.php">Bikes</a></li>
 						<li><div class="dropdown">
 								<a id="glow3" class="navi" href="#">Service</a>
 								<div class="dropdown-content" onmouseover="Glow3()" onmouseout="Initial3()">
@@ -418,7 +418,7 @@
 				</td>
 				<td class="adjust">
 					<h2>5 Seater<br><br>
-					Rs2400/- per day<br><br></h2>
+					800.000vnd/- per day<br><br></h2>
 				</td>
 				<td>
 						<input type="submit" value="BOOK NOW" onclick="Swift()">
@@ -431,7 +431,7 @@
 				</td>
 				<td class="adjust">
 					<h2>5 Seater<br><br>
-					Rs2500/- per day<br><br></h2>
+					750.000vnd/- per day<br><br></h2>
 				</td>
 				<td>
 						<input type="submit" value="BOOK NOW" onclick="Hyundai()">
@@ -444,7 +444,7 @@
 				</td>
 				<td class="adjust">
 					<h2>8 Seater<br><br>
-					Rs3200/- per day<br><br></h2>
+					1.000.000vnd/- per day<br><br></h2>
 				</td>
 				<td>
 						<input type="submit" value="BOOK NOW" onclick="Innova()">
@@ -457,7 +457,7 @@
 				</td>
 				<td class="adjust">
 					<h2>5 Seater<br><br>
-					Rs5500/- per day<br><br></h2>
+					750.000vnd/- per day<br><br></h2>
 				</td>
 				<td>
 						<input type="submit" value="BOOK NOW" onclick="Audi()">
@@ -470,7 +470,7 @@
 				</td>
 				<td class="adjust">
 					<h2>7 Seater<br><br>
-					Rs4600/- per day<br><br></h2>
+					950.000vnd/- per day<br><br></h2>
 				</td>
 				<td>
 						<input type="submit" value="BOOK NOW" onclick="Fortuner()">
@@ -510,18 +510,18 @@
 				<tr bgcolor="#252525">
 					<td class="widget">
 						<p class="text">Showtime is one of the reputed Travel<br>
-						Company in India.At Showtime<br>
+						Company in TPHCM/VN<br>
 						everything we do is about giving you the<br>
 						freedom to discover more.</p>
 					</td>
 					<td class="widget">
-						<p class="text1">Address: Group 3, HCM<br>
-						<img src="images/phone.png">&emsp;+91-7305010188<br>
+						<p class="text1">Address: TPHCM, Vietnam<br>
+						<img src="images/phone.png">&emsp;+123456789<br>
 						<img src="images/message.png">&emsp;tdtu@gmail.com</p>
 					</td>
 				</tr>
 				<tr bgcolor="black">
-					<td class="copyright" colspan="2"><font style="text-align:center;">Copyright 2020 All Right Reserved<font></td>
+					<td class="copyright" colspan="2"><font style="text-align:center;">&copy;Copyright 2024 All Right Reserved<font></td>
 				</tr>
 			</table>
 		</footer>
