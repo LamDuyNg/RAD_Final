@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 12, 2024 at 04:53 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 12, 2024 lúc 05:51 PM
+-- Phiên bản máy phục vụ: 10.4.27-MariaDB
+-- Phiên bản PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,17 +18,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rad_ft`
+-- Cơ sở dữ liệu: `rad_ft`
 --
+
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS `rad_ft`;
+
+-- Switch to the newly created database
+USE `rad_ft`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brand`
+-- Cấu trúc bảng cho bảng `brand`
 --
-
-CREATE DATABASE IF NOT EXISTS `rad_ft`;
-USE `rad_ft`;
 
 CREATE TABLE `brand` (
   `BrandID` int(11) NOT NULL,
@@ -36,7 +39,7 @@ CREATE TABLE `brand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `brand`
+-- Đang đổ dữ liệu cho bảng `brand`
 --
 
 INSERT INTO `brand` (`BrandID`, `brandName`) VALUES
@@ -45,7 +48,7 @@ INSERT INTO `brand` (`BrandID`, `brandName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Cấu trúc bảng cho bảng `customer`
 --
 
 CREATE TABLE `customer` (
@@ -61,7 +64,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `customer`
+-- Đang đổ dữ liệu cho bảng `customer`
 --
 
 INSERT INTO `customer` (`CustomerID`, `DOB`, `address`, `fullName`, `contactNo`, `CusAccID`, `RentingID`, `PaymentID`, `SupportID`) VALUES
@@ -71,29 +74,31 @@ INSERT INTO `customer` (`CustomerID`, `DOB`, `address`, `fullName`, `contactNo`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customeraccount`
+-- Cấu trúc bảng cho bảng `customeraccount`
 --
 
 CREATE TABLE `customeraccount` (
   `CusAccID` int(11) NOT NULL,
-  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `regDate` datetime NOT NULL DEFAULT current_timestamp(),
   `updationDate` datetime DEFAULT NULL,
-  `ManagerID` int(11) DEFAULT NULL
+  `ManagerID` int(11) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `customeraccount`
+-- Đang đổ dữ liệu cho bảng `customeraccount`
 --
 
-INSERT INTO `customeraccount` (`CusAccID`, `password`, `regDate`, `updationDate`, `ManagerID`) VALUES
-(1, '123456', '2024-06-08 17:54:55', NULL, 1),
-(2, '$2y$10$0CvhAk/MuoaJCb8x8FonKOVzdVx1pziyzt.QHYstQEbYCKkMTo1Ee', '2024-06-12 00:45:44', NULL, 1);
+INSERT INTO `customeraccount` (`CusAccID`, `password`, `regDate`, `updationDate`, `ManagerID`, `username`, `email`) VALUES
+(1, '123456', '2024-06-08 17:54:55', NULL, 1, '', ''),
+(2, '$2y$10$0CvhAk/MuoaJCb8x8FonKOVzdVx1pziyzt.QHYstQEbYCKkMTo1Ee', '2024-06-12 00:45:44', NULL, 1, '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customersupport`
+-- Cấu trúc bảng cho bảng `customersupport`
 --
 
 CREATE TABLE `customersupport` (
@@ -109,7 +114,7 @@ CREATE TABLE `customersupport` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manager`
+-- Cấu trúc bảng cho bảng `manager`
 --
 
 CREATE TABLE `manager` (
@@ -120,7 +125,7 @@ CREATE TABLE `manager` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `manager`
+-- Đang đổ dữ liệu cho bảng `manager`
 --
 
 INSERT INTO `manager` (`ManagerID`, `fullName`, `password`, `contactNo`) VALUES
@@ -129,7 +134,7 @@ INSERT INTO `manager` (`ManagerID`, `fullName`, `password`, `contactNo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Cấu trúc bảng cho bảng `payment`
 --
 
 CREATE TABLE `payment` (
@@ -143,7 +148,7 @@ CREATE TABLE `payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `payment`
+-- Đang đổ dữ liệu cho bảng `payment`
 --
 
 INSERT INTO `payment` (`PaymentID`, `status`, `method`, `amount`, `RentingID`, `ManagerID`, `CustomerID`) VALUES
@@ -152,7 +157,7 @@ INSERT INTO `payment` (`PaymentID`, `status`, `method`, `amount`, `RentingID`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provider`
+-- Cấu trúc bảng cho bảng `provider`
 --
 
 CREATE TABLE `provider` (
@@ -164,7 +169,7 @@ CREATE TABLE `provider` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `provider`
+-- Đang đổ dữ liệu cho bảng `provider`
 --
 
 INSERT INTO `provider` (`ProviderID`, `email`, `address`, `fullName`, `contactNo`) VALUES
@@ -173,7 +178,7 @@ INSERT INTO `provider` (`ProviderID`, `email`, `address`, `fullName`, `contactNo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `renting`
+-- Cấu trúc bảng cho bảng `renting`
 --
 
 CREATE TABLE `renting` (
@@ -189,7 +194,7 @@ CREATE TABLE `renting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `renting`
+-- Đang đổ dữ liệu cho bảng `renting`
 --
 
 INSERT INTO `renting` (`RentingID`, `status`, `toDate`, `userEmail`, `rentingNumber`, `fromDate`, `totalAmount`, `VehicleID`, `CustomerID`) VALUES
@@ -198,7 +203,7 @@ INSERT INTO `renting` (`RentingID`, `status`, `toDate`, `userEmail`, `rentingNum
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reportdamage`
+-- Cấu trúc bảng cho bảng `reportdamage`
 --
 
 CREATE TABLE `reportdamage` (
@@ -213,7 +218,7 @@ CREATE TABLE `reportdamage` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `specialdeal`
+-- Cấu trúc bảng cho bảng `specialdeal`
 --
 
 CREATE TABLE `specialdeal` (
@@ -224,7 +229,7 @@ CREATE TABLE `specialdeal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `specialdeal`
+-- Đang đổ dữ liệu cho bảng `specialdeal`
 --
 
 INSERT INTO `specialdeal` (`DealID`, `dealName`, `expireDate`, `priceDiscount`) VALUES
@@ -233,7 +238,7 @@ INSERT INTO `specialdeal` (`DealID`, `dealName`, `expireDate`, `priceDiscount`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Cấu trúc bảng cho bảng `staff`
 --
 
 CREATE TABLE `staff` (
@@ -246,7 +251,7 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staff`
+-- Đang đổ dữ liệu cho bảng `staff`
 --
 
 INSERT INTO `staff` (`StaffID`, `fullName`, `StaffAccID`, `ReportID`, `RentingID`, `VehicleID`) VALUES
@@ -255,7 +260,7 @@ INSERT INTO `staff` (`StaffID`, `fullName`, `StaffAccID`, `ReportID`, `RentingID
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staffaccount`
+-- Cấu trúc bảng cho bảng `staffaccount`
 --
 
 CREATE TABLE `staffaccount` (
@@ -266,7 +271,7 @@ CREATE TABLE `staffaccount` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staffaccount`
+-- Đang đổ dữ liệu cho bảng `staffaccount`
 --
 
 INSERT INTO `staffaccount` (`StaffAccID`, `email`, `password`, `ManagerID`) VALUES
@@ -275,7 +280,7 @@ INSERT INTO `staffaccount` (`StaffAccID`, `email`, `password`, `ManagerID`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehicle`
+-- Cấu trúc bảng cho bảng `vehicle`
 --
 
 CREATE TABLE `vehicle` (
@@ -292,7 +297,7 @@ CREATE TABLE `vehicle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vehicle`
+-- Đang đổ dữ liệu cho bảng `vehicle`
 --
 
 INSERT INTO `vehicle` (`VehicleID`, `vehiclesTitle`, `pricePerDay`, `vehiclesOverview`, `features`, `photoURL`, `availability`, `modelYear`, `BrandID`, `ProviderID`) VALUES
@@ -301,31 +306,31 @@ INSERT INTO `vehicle` (`VehicleID`, `vehiclesTitle`, `pricePerDay`, `vehiclesOve
 (4, 'CX-3', NULL, 'The Mazda CX-3 is a subcompact crossover SUV (B-se', 'The CX-3 received a minor facelift in 2018 including a new split horizontal chrome grille design, foglamps, tail lamps, minor tweaks to the chassis, added safety features, centre console armrest and replaced the manual handbrake with an electronic parking', 'Screenshot 2024-04-03 143155.png', NULL, 2014, 1, NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `brand`
+-- Chỉ mục cho bảng `brand`
 --
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`BrandID`);
 
 --
--- Indexes for table `customer`
+-- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`CustomerID`),
   ADD KEY `kn_Customer_CustomerAccount` (`CusAccID`);
 
 --
--- Indexes for table `customeraccount`
+-- Chỉ mục cho bảng `customeraccount`
 --
 ALTER TABLE `customeraccount`
   ADD PRIMARY KEY (`CusAccID`),
   ADD KEY `kn_CustomerAccount_Manager` (`ManagerID`);
 
 --
--- Indexes for table `customersupport`
+-- Chỉ mục cho bảng `customersupport`
 --
 ALTER TABLE `customersupport`
   ADD PRIMARY KEY (`SupportID`),
@@ -333,13 +338,13 @@ ALTER TABLE `customersupport`
   ADD KEY `kn_CustomerSupport_Manager` (`ManagerID`);
 
 --
--- Indexes for table `manager`
+-- Chỉ mục cho bảng `manager`
 --
 ALTER TABLE `manager`
   ADD PRIMARY KEY (`ManagerID`);
 
 --
--- Indexes for table `payment`
+-- Chỉ mục cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`PaymentID`),
@@ -348,13 +353,13 @@ ALTER TABLE `payment`
   ADD KEY `kn_Payment_Customer` (`CustomerID`);
 
 --
--- Indexes for table `provider`
+-- Chỉ mục cho bảng `provider`
 --
 ALTER TABLE `provider`
   ADD PRIMARY KEY (`ProviderID`);
 
 --
--- Indexes for table `renting`
+-- Chỉ mục cho bảng `renting`
 --
 ALTER TABLE `renting`
   ADD PRIMARY KEY (`RentingID`),
@@ -362,7 +367,7 @@ ALTER TABLE `renting`
   ADD KEY `kn_Renting_Customer` (`CustomerID`);
 
 --
--- Indexes for table `reportdamage`
+-- Chỉ mục cho bảng `reportdamage`
 --
 ALTER TABLE `reportdamage`
   ADD PRIMARY KEY (`ReportID`),
@@ -370,13 +375,13 @@ ALTER TABLE `reportdamage`
   ADD KEY `kn_ReportDamage_Provider` (`ProviderID`);
 
 --
--- Indexes for table `specialdeal`
+-- Chỉ mục cho bảng `specialdeal`
 --
 ALTER TABLE `specialdeal`
   ADD PRIMARY KEY (`DealID`);
 
 --
--- Indexes for table `staff`
+-- Chỉ mục cho bảng `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`StaffID`),
@@ -385,14 +390,14 @@ ALTER TABLE `staff`
   ADD KEY `kn_Staff_Renting` (`RentingID`);
 
 --
--- Indexes for table `staffaccount`
+-- Chỉ mục cho bảng `staffaccount`
 --
 ALTER TABLE `staffaccount`
   ADD PRIMARY KEY (`StaffAccID`),
   ADD KEY `kn_staffAccount_Manager` (`ManagerID`);
 
 --
--- Indexes for table `vehicle`
+-- Chỉ mục cho bảng `vehicle`
 --
 ALTER TABLE `vehicle`
   ADD PRIMARY KEY (`VehicleID`),
@@ -400,112 +405,112 @@ ALTER TABLE `vehicle`
   ADD KEY `kn_Vehicle_Provider` (`ProviderID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `brand`
+-- AUTO_INCREMENT cho bảng `brand`
 --
 ALTER TABLE `brand`
   MODIFY `BrandID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
   MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `customeraccount`
+-- AUTO_INCREMENT cho bảng `customeraccount`
 --
 ALTER TABLE `customeraccount`
   MODIFY `CusAccID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `customersupport`
+-- AUTO_INCREMENT cho bảng `customersupport`
 --
 ALTER TABLE `customersupport`
   MODIFY `SupportID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `manager`
+-- AUTO_INCREMENT cho bảng `manager`
 --
 ALTER TABLE `manager`
   MODIFY `ManagerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT cho bảng `payment`
 --
 ALTER TABLE `payment`
   MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `provider`
+-- AUTO_INCREMENT cho bảng `provider`
 --
 ALTER TABLE `provider`
   MODIFY `ProviderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `renting`
+-- AUTO_INCREMENT cho bảng `renting`
 --
 ALTER TABLE `renting`
   MODIFY `RentingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `reportdamage`
+-- AUTO_INCREMENT cho bảng `reportdamage`
 --
 ALTER TABLE `reportdamage`
   MODIFY `ReportID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `specialdeal`
+-- AUTO_INCREMENT cho bảng `specialdeal`
 --
 ALTER TABLE `specialdeal`
   MODIFY `DealID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `staff`
+-- AUTO_INCREMENT cho bảng `staff`
 --
 ALTER TABLE `staff`
   MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `staffaccount`
+-- AUTO_INCREMENT cho bảng `staffaccount`
 --
 ALTER TABLE `staffaccount`
   MODIFY `StaffAccID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `vehicle`
+-- AUTO_INCREMENT cho bảng `vehicle`
 --
 ALTER TABLE `vehicle`
   MODIFY `VehicleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `customer`
+-- Các ràng buộc cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD CONSTRAINT `kn_Customer_CustomerAccount` FOREIGN KEY (`CusAccID`) REFERENCES `customeraccount` (`CusAccID`);
 
 --
--- Constraints for table `customeraccount`
+-- Các ràng buộc cho bảng `customeraccount`
 --
 ALTER TABLE `customeraccount`
   ADD CONSTRAINT `kn_CustomerAccount_Manager` FOREIGN KEY (`ManagerID`) REFERENCES `manager` (`ManagerID`);
 
 --
--- Constraints for table `customersupport`
+-- Các ràng buộc cho bảng `customersupport`
 --
 ALTER TABLE `customersupport`
   ADD CONSTRAINT `kn_CustomerSupport_Customer` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`),
   ADD CONSTRAINT `kn_CustomerSupport_Manager` FOREIGN KEY (`ManagerID`) REFERENCES `manager` (`ManagerID`);
 
 --
--- Constraints for table `payment`
+-- Các ràng buộc cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `kn_Payment_Customer` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`),
@@ -513,21 +518,21 @@ ALTER TABLE `payment`
   ADD CONSTRAINT `kn_Payment_Renting` FOREIGN KEY (`RentingID`) REFERENCES `renting` (`RentingID`);
 
 --
--- Constraints for table `renting`
+-- Các ràng buộc cho bảng `renting`
 --
 ALTER TABLE `renting`
   ADD CONSTRAINT `kn_Renting_Customer` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`),
   ADD CONSTRAINT `kn_Renting_Vehicle` FOREIGN KEY (`VehicleID`) REFERENCES `vehicle` (`VehicleID`);
 
 --
--- Constraints for table `reportdamage`
+-- Các ràng buộc cho bảng `reportdamage`
 --
 ALTER TABLE `reportdamage`
   ADD CONSTRAINT `kn_ReportDamage_Provider` FOREIGN KEY (`ProviderID`) REFERENCES `provider` (`ProviderID`),
   ADD CONSTRAINT `kn_ReportDamage_Staff` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 
 --
--- Constraints for table `staff`
+-- Các ràng buộc cho bảng `staff`
 --
 ALTER TABLE `staff`
   ADD CONSTRAINT `kn_Staff_Renting` FOREIGN KEY (`RentingID`) REFERENCES `renting` (`RentingID`),
@@ -535,13 +540,13 @@ ALTER TABLE `staff`
   ADD CONSTRAINT `kn_Staff_Vehicle` FOREIGN KEY (`VehicleID`) REFERENCES `vehicle` (`VehicleID`);
 
 --
--- Constraints for table `staffaccount`
+-- Các ràng buộc cho bảng `staffaccount`
 --
 ALTER TABLE `staffaccount`
   ADD CONSTRAINT `kn_staffAccount_Manager` FOREIGN KEY (`ManagerID`) REFERENCES `manager` (`ManagerID`);
 
 --
--- Constraints for table `vehicle`
+-- Các ràng buộc cho bảng `vehicle`
 --
 ALTER TABLE `vehicle`
   ADD CONSTRAINT `kn_Vehicle_Brand` FOREIGN KEY (`BrandID`) REFERENCES `brand` (`BrandID`),
