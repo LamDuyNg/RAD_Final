@@ -1,5 +1,9 @@
 <html>
-
+<?php 
+include 'db_connection.php'; 
+require_once 'sign-in-submit.php';
+session_start();
+?>
 <head>
 	<title>Car Rental Service</title>
 	<link rel="icon" type="image/png" href="images/wheelzonrent-logo.png">
@@ -396,17 +400,64 @@
 				font-size: 80%;
 			}
 		}
+
+		.logo .sign-in {
+            margin-left: 10px;
+            padding: 8px 8px;
+            font-size: 1.1vw;
+            color: #fff;
+            background-color: #007BFF;
+            border: 1px solid #1679AB;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			text-decoration: none;
+        }
+
+		.logo .sign-up {
+            margin-left: 10px;
+            padding: 8px 8px;
+            font-size: 1.1vw;
+            color: #007BFF;
+            background-color: #ffff;
+            border: 1px solid #1679AB;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			text-decoration: none;
+        }
+
+        .logo .sign-in:hover {
+            background-color: #0056b3;
+        }
+
+		.logo .sign-up:hover {
+			background-color: #0056b3;
+			color: #fff;
+		}
 	</style>
 </head>
 
 <body>
 	<header>
 		<div class="up" id="Up">
-			<div class="logo"><img src="images/wheelzonrent-logo.png" height="122%" width="10%%" style="float:left;margin:-1.2% 0 0 6.5%;">
+			<div class="logo"><img src="images/wheelzonrent-logo.png" height="90px" width="10%" style="float:left;margin:-1.2% 0 0 6.5%;">
 				<img height="25%" width="1.6%" src="images/phone.png" style="height:auto;">
 				<font style="font-size:1.254vw;">&ensp;+0123456789&emsp;</font>
 				<img height="21%" width="1.9%" src="images/message.png" style="height:auto;">
 				<font style="font-size:1.254vw;">&ensp;tdtu@gmail.com</font>
+				<?php
+				// Check if the user is logged in
+				if (isset($_SESSION['username'])) {
+					$username = $_SESSION['username'];
+					// Display the customer's name
+					echo '<text class="logged-in-user" style="font-size: 20px;">WELCOME, ' . $username . '</text>';
+				} else {
+					// If user is not logged in, display sign-up and sign-in buttons
+					echo '<a href="sign-up.php" class="sign-up" style="margin-left: 1%; padding: 0.5% 1%; font-size: 1.254vw;">Sign Up</a>';
+					echo '<a href="sign-in.php" class="sign-in" style="margin-left: 0.5%; padding: 0.5% 1%; font-size: 1.254vw;">Sign In</a>';
+				}
+				?>
 			</div>
 			<div class="logo1">
 				<center><img src="images/wheelzonrent-logo.png" height="50%" width="30%"></center>
@@ -437,6 +488,12 @@
 					<li><a class="navi" href="contact.php">Contact Us</a></li>
 					<li><a class="navi" href="terms.php">Terms</a></li>
 					<li><a class="navi" href="feedback.php">Feedback</a></li>
+					<?php
+					// Check if the user is logged in
+					if (isset($_SESSION['username'])) {
+						echo '<li><a class="navi" href="log-out.php" style="color: red;">Logout</a></li>';
+					} 
+					?>
 				</ul>
 			</nav>
 		</div>

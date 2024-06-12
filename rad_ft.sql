@@ -27,6 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `brand`
 --
 
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS `rad_ft`;
+
+-- Switch to the newly created database
+USE `rad_ft`;
+
 CREATE TABLE `brand` (
   `BrandID` int(11) NOT NULL,
   `brandName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL

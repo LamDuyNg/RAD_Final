@@ -1,5 +1,9 @@
 <html>
-
+<?php 
+include 'db_connection.php'; 
+require_once 'sign-in-submit.php';
+session_start();
+?>
 <head>
 	<title>Wedding Car Rental</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -400,17 +404,64 @@
 				font-size: 70%;
 			}
 		}
+
+		.logo .sign-in {
+            margin-left: 10px;
+            padding: 8px 8px;
+            font-size: 1.1vw;
+            color: #fff;
+            background-color: #007BFF;
+            border: 1px solid #1679AB;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			text-decoration: none;
+        }
+
+		.logo .sign-up {
+            margin-left: 10px;
+            padding: 8px 8px;
+            font-size: 1.1vw;
+            color: #007BFF;
+            background-color: #ffff;
+            border: 1px solid #1679AB;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+			text-decoration: none;
+        }
+
+        .logo .sign-in:hover {
+            background-color: #0056b3;
+        }
+
+		.logo .sign-up:hover {
+			background-color: #0056b3;
+			color: #fff;
+		}
 	</style>
 </head>
 
 <body>
 	<header>
 		<div class="up" id="up">
-			<div class="logo"><img src="images/wheelzonrent-logo.png" height="122%" width="10%%" style="float:left;margin:-1.2% 0 0 6.5%;">
+			<div class="logo"><img src="images/wheelzonrent-logo.png" height="90px" width="10%" style="float:left;margin:-1.2% 0 0 6.5%;">
 				<img height="25%" width="1.6%" src="images/phone.png" style="height:auto;">
 				<font style="font-size:1.254vw;">&ensp;+0123456789&emsp;</font>
 				<img height="21%" width="1.9%" src="images/message.png" style="height:auto;">
 				<font style="font-size:1.254vw;">&ensp;tdtu@gmail.com</font>
+				<?php
+				// Check if the user is logged in
+				if (isset($_SESSION['username'])) {
+					$username = $_SESSION['username'];
+					// Display the customer's name
+					echo '<text class="logged-in-user" style="font-size: 20px;">WELCOME, ' . $username . '</text>';
+				} else {
+					// If user is not logged in, display sign-up and sign-in buttons
+					echo '<a href="sign-up.php" class="sign-up" style="margin-left: 1%; padding: 0.5% 1%; font-size: 1.254vw;">Sign Up</a>';
+					echo '<a href="sign-in.php" class="sign-in" style="margin-left: 0.5%; padding: 0.5% 1%; font-size: 1.254vw;">Sign In</a>';
+				}
+				?>
 			</div>
 			<div class="logo1">
 				<center><img src="images/wheelzonrent-logo.png" height="50%" width="30%"></center>
@@ -441,6 +492,12 @@
 					<li><a class="navi" href="contact.php">Contact Us</a></li>
 					<li><a class="navi" href="terms.php">Terms</a></li>
 					<li><a class="navi" href="feedback.php">Feedback</a></li>
+					<?php
+					// Check if the user is logged in
+					if (isset($_SESSION['username'])) {
+						echo '<li><a class="navi" href="log-out.php" style="color: red;">Logout</a></li>';
+					} 
+					?>
 				</ul>
 			</nav>
 		</div>
@@ -485,7 +542,7 @@
 			we have a wide range of luxury and premium cars for you. We think for a special occasion we need the right car at right prices, HTDT provides the best car accordingly the customer requirement.<br><br>
 		</p>
 		<p style="font-size:95%;text-align:left;margin:10% 0 10% 4%;">
-			We assured you the best of our services. Further for more assistance please feel free to call us – 8384066726.<br>
+			We assured you the best of our services. Further for more assistance please feel free to call us - 0123456789.<br>
 			<b>
 				<font color="#00afe5">Wedding Car On Rent, Luxury Car Hire In TPHCM, Marriage Car Rental Service TPHCM, Car Rental In TPHCM</font>
 			</b>
@@ -499,7 +556,7 @@
 			we have a wide range of luxury and premium cars for you. We think for a special occasion we need the right car at right prices, HTDT provides the best car accordingly the customer requirement.<br><br>
 		</p>
 		<p style="text-align:left;margin:0 0 10% 2%;">
-			We assured you the best of our services. Further for more assistance please feel free to call us – 0123456789.<br>
+			We assured you the best of our services. Further for more assistance please feel free to call us - 0123456789.<br>
 			<b>
 				<font color="#00afe5">Wedding Car On Rent, Luxury Car Hire In TPHCM, Marriage Car Rental Service TPHCM, Car Rental In TPHCM</font>
 			</b>
